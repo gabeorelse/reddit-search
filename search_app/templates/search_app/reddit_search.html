@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'search_app/results.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <title>Reddit Search</title>
+</head>
+<body>
+
+<h1>Success!</h1>
+{{ table|safe }}
+<p>Want to save your results? Click the button to download this table as an Excel spreadsheet.</p>
+<div class="center">
+<button onclick="downloadExcel()">Download Spreadsheet</button>
+</div>
+    <script>
+        function downloadExcel() {
+            fetch('/search_app/save_results/', {method: 'POST', headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json'
+            }})
+            .then(response => response.blob())
+            .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'excel_results.xlsx';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            });
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+        }
+    </script>
+</body>
+</html> 

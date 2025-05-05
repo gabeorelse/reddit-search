@@ -1,0 +1,44 @@
+body {
+    background-color:rgb(253, 242, 236);
+    margin-top: 50px;
+}
+h1 {
+    font-family: "Reddit Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color:rgb(255, 79, 15);
+    text-align: center;
+}
+form{
+    font-family: "Reddit Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+input[type=text] {
+    font-family: "Reddit Sans", sans-serif;
+    padding: 12px 15px;
+    border-radius: 5px;
+  }
+.sub {
+    text-align: center;
+}
+#subreddit {
+    margin: 10px;
+}
+#key_word {
+    margin: 10px;
+}
+button[type=submit]{
+    margin-top: 10px;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-family: "Reddit Sans", sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+    font-style: normal;
+    background-color:rgb(255, 79, 15);
+    color: white;
+    border-radius: 10px;
+}
